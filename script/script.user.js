@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Bitbucket server need-work-pr highlighter
 // @namespace   rogama25
-// @version     1.0
+// @version     1.1
 // @author      rogama25
 // @description Highlights when a PR needs work in Bitbucket server
 // ==/UserScript==
