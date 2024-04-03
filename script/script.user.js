@@ -11,15 +11,18 @@ window.addEventListener('load', async function() {
     const data = await result.json()
 
     const paint = function () {
-        const prRows = document.querySelectorAll(".dashboard-pull-request-table .pull-request-row")
-        data.values.forEach(pr => {
-            if (pr.reviewers.some(r => r.status === "NEEDS_WORK")) {
-                const row = Array.from(prRows).find(row => row.querySelector("a").href.includes(pr.links.self[0].href))
-                if (!row) return
-                row.style.backgroundColor = "rgba(255, 0, 0, 0.2)"
-            }
-        })
+        setTimeout({
+            const prRows = document.querySelectorAll(".dashboard-pull-request-table .pull-request-row")
+            data.values.forEach(pr => {
+                if (pr.reviewers.some(r => r.status === "NEEDS_WORK")) {
+                    const row = Array.from(prRows).find(row => row.querySelector("a").href.includes(pr.links.self[0].href))
+                    if (!row) return
+                    row.style.backgroundColor = "rgba(255, 0, 0, 0.2)"
+                }
+            })
+        },100)
     }
     paint()
-    this.document.querySelectorAll(".show-more").forEach(btn => btn.addEventListener("click", () => setTimeout(paint, 100)))
+    const observer = new MutationObserver(() => paint())
+    Array.from(this.document.getElementsByTagName("table")).forEach(tb => observer.observe(tb, {childList: true, subtree:true}))
 });
