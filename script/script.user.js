@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name        Bitbucket server need-work-pr highlighter
 // @namespace   rogama25
-// @version     1.1
+// @version     1.2
 // @author      rogama25
 // @description Highlights when a PR needs work in Bitbucket server
 // ==/UserScript==
@@ -11,7 +11,7 @@ window.addEventListener('load', async function() {
     const data = await result.json()
 
     const paint = function () {
-        setTimeout({
+        setTimeout(() => {
             const prRows = document.querySelectorAll(".dashboard-pull-request-table .pull-request-row")
             data.values.forEach(pr => {
                 if (pr.reviewers.some(r => r.status === "NEEDS_WORK")) {
